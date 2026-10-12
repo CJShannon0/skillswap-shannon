@@ -8,28 +8,38 @@
     <script src="./js/script.js"></script>
 </head>
 <body>
-    <header>
+    <header id="top-of-page">
         <h1>Skill Swap</h1>
         <nav aria-label="Main navigation">
         <h2>Navigation</h2>
-            <!-- Navigation links will go here. -->
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#browse-skills">Browse Skills</a></li>
+            <li><a href="#offer-skills">Offer Skills</a></li>
+            <li><a href="index.html">Your Profile</a></li>
+        </ul>
         </nav>
     </header>
 
     <main>
-        <section aria-labelledby="hero-heading">
-            <h3 id="hero-heading">Share what you know. Learn what you need.</h3>
+        <section aria-labelledby="hero-heading" class="hero-heading">
+            <h2>Share what you know.<br>Learn what you need.</h2>
             <p>Trade tutoring sessions with fellow students.</p>
         </section>
 
-        <section aria-labelledby="offerings-heading">
-            <h3 id="offerings-heading">Skill Offerings</h3>
+        <section class="content-section offerings" aria-labelledby="offerings-heading" id="browse-skills">
+            <h2>Skill Offerings</h2>
             <p>Skill offerings will appear here.</p>
+        </section>
+
+        <section class="content-section offer-skills" aria-labelledby="offer-skills-heading" id="offer-skills">
+            <h2>Offer a Skill</h2>
+            <p>Information about sharing your skills will appear here.</p>
         </section>
     </main>
 
-    <footer>
-        <p>Footer content will go here.</p>
+    <footer id="about">
+        <a href="#top-of-page">to top</a>
     </footer>
 </body>
 </html>
