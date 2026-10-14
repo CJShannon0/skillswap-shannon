@@ -147,14 +147,29 @@ main {
 }
 
 .skill-card {
+	position: relative;
+	display: grid;
+	grid-template-rows: 1fr;
 	padding: 24px;
 	border: 10px solid var(--ink);
 	border-radius: 16px;
 	background: var(--paper);
-	transition: transform 500ms ease, border-color 500ms ease, box-shadow 500ms ease;
+	transition: grid-template-rows 500ms ease, 
+		min-height 500ms ease, 
+		padding 500ms ease, 
+		transform 500ms ease, 
+		border-color 500ms ease, 
+		box-shadow 500ms ease,
+		max-height 500ms ease;
 
+	.skill-card-content {
+		min-height: 0;
+		overflow: hidden;
+		transition: opacity 500ms ease, visibility 0s linear;
+	}
 
 	h3 {
+		padding-right: 32px;
 		margin: 0;
 		font-family: Georgia, "Times New Roman", serif;
 		font-size: 24px;
@@ -168,7 +183,6 @@ main {
 
 	.skill-card-details {
 		margin-top: 8px;
-		font-size: 14px;
 	}
 
 	.skill-card-extra {
@@ -181,12 +195,34 @@ main {
 		transition: max-height 500ms ease, opacity 500ms ease, margin-top 500ms ease, padding-top 500ms ease, border-width 500ms ease;
 	}
 
-	&.is-expanded .skill-card-extra {
-		max-height: 300px;
-		margin-top: 16px;
-		padding-top: 12px;
-		border-top-width: 1px;
-		opacity: 1;
+	.skill-card-collapse {
+		position: absolute;
+		top: 10px;
+		right: 10px;
+		display: grid;
+		width: 32px;
+		height: 32px;
+		place-items: center;
+		padding: 0;
+		border: 1px solid var(--line);
+		border-radius: 50%;
+		background: var(--white);
+		color: var(--ink);
+		font: inherit;
+		font-size: 24px;
+		line-height: 1;
+		cursor: pointer;
+		z-index: 1;
+	}
+
+	.skill-card-collapse:hover,
+	.skill-card-collapse:focus-visible {
+		background: var(--line);
+	}
+
+	.skill-card-collapse:focus-visible {
+		outline: 3px solid var(--coral-dark);
+		outline-offset: 2px;
 	}
 
 	&.is-expanded {
@@ -196,6 +232,19 @@ main {
 	&:focus-visible {
 		outline: 3px solid var(--coral-dark);
 		outline-offset: 4px;
+	}
+
+	&.is-expanded .skill-card-extra {
+		max-height: 300px;
+		margin-top: 16px;
+		padding-top: 12px;
+		border-top-width: 1px;
+		opacity: 1;
+	}
+
+	&.is-collapsed {
+		max-height: 70px;
+		transition: max-height 500ms ease;
 	}
 }
 

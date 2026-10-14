@@ -1,35 +1,38 @@
+const setCardExpanded = (card, expanded) => {
+    card.classList.toggle("is-expanded", expanded);
+};
+
+const toggleCardCollapsed = (card) => {
+    card.classList.toggle("is-collapsed");
+};
+
 document.querySelectorAll(".skill-card").forEach((card) => {
-    const details = card.querySelector(".skill-card-extra");
-    if (!details) {
+    const content = card.querySelector(".skill-card-content");
+    const collapseButton = card.querySelector(".skill-card-collapse");
+    if (!content || !collapseButton) {
         return;
     }
 
-    let isHovered = false;
-    let isFocused = false;
-
-    const updateDetailsVisibility = () => {
-        card.classList.toggle("is-expanded", isHovered || isFocused);
-    };
-
     card.addEventListener("pointerenter", () => {
-        isHovered = true;
-        updateDetailsVisibility();
+        setCardExpanded(card, true);
     });
 
     card.addEventListener("pointerleave", () => {
-        isHovered = false;
-        updateDetailsVisibility();
+        setCardExpanded(card, false);
     });
 
     card.addEventListener("focusin", () => {
-        isFocused = true;
-        updateDetailsVisibility();
+        setCardExpanded(card, true);
     });
 
     card.addEventListener("focusout", (event) => {
         if (!card.contains(event.relatedTarget)) {
-            isFocused = false;
-            updateDetailsVisibility();
+            setCardExpanded(card, false);
         }
+    });
+
+    collapseButton.addEventListener("click", () => {
+        toggleCardCollapsed(card);
+        setCardExpanded(card, false);
     });
 });
